@@ -1,4 +1,5 @@
 == README
 
 Sovellus: http://ratebeer-juhise.herokuapp.com/breweries
+
 Kurssi: https://github.com/mluukkai/WebPalvelinohjelmointi2014/wiki/Web-palvelinohjelmointi-Ruby-on-Rails
