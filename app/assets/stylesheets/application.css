@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.navi {
+    padding: 10px;
+    background: #EFEFEF;
+}
