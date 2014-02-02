@@ -16,6 +16,9 @@ group :production do
   gem 'rails_12factor'
 end
 
+#tiiviste
+gem 'bcrypt-ruby', '~> 3.1.2'
+
 #debugger
 gem 'byebug', group: [:development, :test]
 
