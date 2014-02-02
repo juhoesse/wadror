@@ -5,14 +5,15 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: true,
             length: {minimum: 3, maximum: 15}
-  validates :password, length: {minimum: 4}, format: {with: /(?=.*[A-Z])(?=.[\d])/}
+  validates :password, length: {minimum: 4}, format: {with: /(?=.*[A-Z])(?=.[\d])/,
+            message: "Should contain a uppercase letter and a number"}
 
   has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
+  has_many :memberships, dependent: :destroy
+  has_many :beer_clubs, through: :memberships
 
-  def year_cannot_be_in_future
-    if contains_one_alpha("")
-      errors.add(:year, "can't be in the future")
-    end
+  def to_s
+    "#{username}"
   end
 end
