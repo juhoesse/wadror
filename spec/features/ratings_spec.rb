@@ -50,7 +50,6 @@ describe "Rating" do
       expect{
         page.first('a', text:'delete').click
       }.to change{Rating.count}.by(-1)
-      save_and_open_page
     end
   end
 end
