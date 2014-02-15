@@ -1,10 +1,16 @@
 language: ruby
-
 rvm:
- - 2.0.0
-
+- 2.0.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: XeJF1C7lWFefiVFXHrpx0k5No45kXfzxQi5272JALeIE0ZshorQ9s5wC+d7cIHwEkggbO9ASjdUBno2TY9aESIOeELzC886e1ncXo4tDa7rKVf4CC9FqDhJZc6QI0awuYyuWm7K9Dl1dRwa/oHi0jmdmrs3kiqUK2Oom3JxUsOg=
+  app: ratebeer-juhise
+  on:
+    repo: juhoesse/wadror
+  run: "rake db:migrate"
