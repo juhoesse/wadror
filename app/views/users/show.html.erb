@@ -8,7 +8,8 @@
 <% if @user.ratings.empty?%>
     <p>No ratings</p>
 <% else %>
-    <p> Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating%></p>
+    <p>Has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating%></p>
+    <p>Favorite beer: <%= @user.favorite_beer %> </p>
     <p>Favorite style: <%= @user.favorite_style%> </p>
     <p>Favorite brewery: <%= @user.favorite_brewery.name%> </p>
 <% end %>

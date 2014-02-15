@@ -15,3 +15,5 @@
 
 
 <%= link_to 'Edit', edit_beer_club_path(@beer_club) %>
+<br>
+<%= link_to 'Destroy the club', @beer_club, method: :delete, data: { confirm: 'Are you sure?' } %>
