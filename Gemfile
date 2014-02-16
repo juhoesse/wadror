@@ -25,7 +25,12 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem 'webmock'
 end
+
+gem 'httparty'
+
+gem "rails-settings-cached", "0.3.1"
 
 #tiiviste
 gem 'bcrypt-ruby', '~> 3.1.2'
