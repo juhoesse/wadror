@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+include OwnTestHelper
+
 describe User do
   it "has the username set correctly" do
     user = User.new username:"Pekka"
@@ -113,41 +115,23 @@ describe User do
     end
 
     it "is the only rated if only one rating" do
-
-      brewery = FactoryGirl.create(:brewery)
-      beer = FactoryGirl.create(:beer, brewery:brewery)
-      rating = FactoryGirl.create(:rating, beer:beer, user:user)
+      favorite = FactoryGirl.create(:style)
+      create_beers_with_ratings_and_style(10, favorite, user)
 
       expect(user.favorite_brewery).to eq(brewery)
     end
 
 
     it "is the one with highest rating average if several rated" do
-      brewery = FactoryGirl.create(:brewery)
-      brewery2 = FactoryGirl.create(:brewery, name:"Not anonymous")
-      beer = FactoryGirl.create(:beer, brewery: brewery)
-      beer2 = FactoryGirl.create(:beer, brewery: brewery)
-      beer3 = FactoryGirl.create(:beer, brewery: brewery)
-      beer4 = FactoryGirl.create(:beer, brewery: brewery2)
-      FactoryGirl.create(:rating, score:10, beer:beer, user:user)
-      FactoryGirl.create(:rating, score:10, beer:beer2, user:user)
-      FactoryGirl.create(:rating, score:10, beer:beer3, user:user)
-      FactoryGirl.create(:rating, score:9, beer:beer4, user:user)
+      favorite = FactoryGirl.create(:style)
+
+      create_beers_with_ratings_and_style(10, 20, 15, FactoryGirl.create(:style), user)
+      create_beers_with_ratings_and_style(35, favorite = FactoryGirl.create(:style), user)
+      create_beers_with_ratings_and_style(25, 20, 15, FactoryGirl.create(:style), user)
 
       expect(user.favorite_brewery).to eq(brewery)
     end
 
   end
 
-  def create_beers_with_ratings(*scores, user)
-    scores.each do |score|
-      create_beer_with_rating(score, user)
-    end
-  end
-
-  def create_beer_with_rating(score, user)
-    beer = FactoryGirl.create(:beer)
-    FactoryGirl.create(:rating, score:score, beer:beer, user:user)
-    beer
-  end
 end

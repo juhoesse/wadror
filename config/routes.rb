@@ -1,11 +1,11 @@
 Ratebeer::Application.routes.draw do
   resources :memberships
-
   resources :beer_clubs
-
   resources :users
   resources :beers
   resources :breweries
+  resources :styles
+
 
   root 'breweries#index'
   #get 'ratings', to: 'ratings#index'

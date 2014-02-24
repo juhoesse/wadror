@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Beer do
 
   it "is not saved without a name" do
-    beer = Beer.create style:"Lager"
+    beer = Beer.create style:FactoryGirl.create(:style)
 
     expect(beer).not_to be_valid
     expect(Beer.count).to eq(0)
@@ -17,7 +17,7 @@ describe Beer do
   end
 
   describe "with a name and style" do
-    let(:beer){ Beer.create name:"Iso 3", style:"Lager" }
+    beer = Beer.create name:"Karhu", style:FactoryGirl.create(:style)
 
     it "is saved" do
       expect(beer).to be_valid
