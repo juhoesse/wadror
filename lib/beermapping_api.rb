@@ -2,7 +2,10 @@ class BeermappingApi
   def self.places_in(city)
     city = city.downcase
     Rails.cache.fetch(city, expires_in: 1.week) { fetch_places_in(city) }
-    session[:place_city] = city
+  end
+
+  def self.find(id, city)
+    places_in(city).select{ |p| p.id==id.to_s }.first
   end
 
   private
